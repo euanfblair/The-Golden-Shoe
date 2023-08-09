@@ -1,0 +1,9 @@
+.carousel-container {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.carousel-img {
+    height: 50vh;
+    object-fit: cover;
+}
