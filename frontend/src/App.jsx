@@ -10,6 +10,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import Chatbot from './chatbot/ChatbotComponent';
 import { UserProvider } from './context/UserContext';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -33,6 +34,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
+          <Chatbot />
           <Footer />
         </Router>
       </CartProvider>
