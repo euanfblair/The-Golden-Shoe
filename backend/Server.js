@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const dotenv = require("dotenv")
+dotenv.config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Initialize Stripe with secret key
 const bodyParser = require('body-parser');
 
@@ -59,7 +60,7 @@ app.post('/create-checkout-session', async (req, res) => {
     payment_method_types: ['card'],
     line_items: transformedItems,
     mode: 'payment',
-    success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `http://localhost:3000/success`,
     cancel_url: `http://localhost:3000/cancel`,
   });
 

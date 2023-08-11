@@ -14,9 +14,18 @@ import Chatbot from './chatbot/ChatbotComponent';
 import { UserProvider } from './context/UserContext';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import SuccessCheckoutPage from './pages/SuccessCheckoutPage';
 
 
-const stripePromise = loadStripe("pk_test_51NXiEFESISh7SxdPXYEvHbLifWpGp15jSB5raRvEZWWuRuhzPwegB5EQnJ7XsAmAfjP47sPCEwHH86y2OhbfWPH800copFas6v");
+
+
+const stripeKey = import.meta.env.VITE_STRIPE_PUB_KEY;
+console.log('Stripe Key:', stripeKey);
+export const stripePromise = loadStripe(stripeKey);
+
+
+
+
 
 function App() {
   return (
@@ -33,6 +42,7 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/success" element={<SuccessCheckoutPage />} />
           </Routes>
           <Chatbot />
           <Footer />

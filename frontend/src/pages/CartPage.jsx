@@ -3,15 +3,16 @@ import { loadStripe } from '@stripe/stripe-js';
 import { CartContext } from '../context/CartContext';
 import CartItem from '../components/CartItem';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { stripePromise } from '../App';
 
 
-const stripeKey = import.meta.env.REACT_APP_STRIPE_PUB_KEY;
-const stripePromise = loadStripe(stripeKey);
+
 
 const CartPage = () => {
   const [cart, setCart] = useContext(CartContext);
   const [subtotal, setSubtotal] = useState(0);
 
+  // Calculate the subtotal whenever the cart changes
   useEffect(() => {
     let newSubtotal = 0;
     for (let item of cart) {
@@ -22,12 +23,14 @@ const CartPage = () => {
     setSubtotal(newSubtotal);
   }, [cart]);
 
+  // Function to remove an item from the cart
   const removeFromCart = (index) => {
     let newCart = [...cart];
     newCart.splice(index, 1);
     setCart(newCart);
   };
 
+  // Function to handle the checkout process using Stripe
   const handleCheckout = async () => {
     // Get Stripe.js instance
     const stripe = await stripePromise;
